@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lab Task 03 - Box Model and Display Properties</title>
+
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        /* =====================================
+           PART A: BOX MODEL DEMONSTRATION
+        ===================================== */
+
+        .box {
+            width: 200px;
+            height: 100px;
+        }
+
+        /* Default box-sizing (content-box) */
+        .box1 {
+            padding: 20px;
+            border: 5px solid red;
+            margin: 20px;
+            background-color: lightcoral;
+        }
+
+        /* Different spacing values */
+        .box2 {
+            padding: 10px;
+            border: 10px dashed blue;
+            margin: 40px;
+            background-color: lightblue;
+        }
+
+        /* Border-box example */
+        .box3 {
+            box-sizing: border-box;
+            padding: 20px;
+            border: 5px solid green;
+            margin: 20px;
+            background-color: lightgreen;
+        }
+
+
+        /* =====================================
+           PART C: DISPLAY PROPERTIES
+        ===================================== */
+
+        /* Block (p is block by default) */
+        .block-example {
+            display: block;
+            background-color: #dddddd;
+            margin: 10px 0;
+            padding: 10px;
+        }
+
+        /* Inline */
+        .inline-example {
+            display: inline;
+            background-color: yellow;
+            padding: 5px;
+        }
+
+        /* Inline-block */
+        .inline-block-example {
+            display: inline-block;
+            width: 120px;
+            height: 50px;
+            background-color: orange;
+            margin: 5px;
+            text-align: center;
+            line-height: 50px;
+        }
+
+        /* Display None */
+        .none-example {
+            display: none;
+            background-color: red;
+            padding: 10px;
+        }
+
+
+        /* =====================================
+           PART D: VISIBILITY VS DISPLAY
+        ===================================== */
+
+        .visibility-example {
+            visibility: hidden;
+            background-color: purple;
+            height: 50px;
+            margin-top: 10px;
+        }
+
+    </style>
+
+</head>
+<body>
+
+    <h1>CSS Box Model Demonstration</h1>
+
+    <!-- Part A: Three Div Boxes -->
+    <div class="box box1">Box 1 - Default (content-box)</div>
+    <div class="box box2">Box 2 - Different Spacing</div>
+    <div class="box box3">Box 3 - Border Box</div>
+
+    <hr>
+
+    <h2>Display Properties</h2>
+
+    <!-- Block Example -->
+    <p class="block-example">
+        This paragraph uses display: block.
+    </p>
+
+    <!-- Inline Example -->
+    <span class="inline-example">Inline Span 1</span>
+    <span class="inline-example">Inline Span 2</span>
+
+    <br><br>
+
+    <!-- Inline-Block Example -->
+    <div class="inline-block-example">Inline-Block 1</div>
+    <div class="inline-block-example">Inline-Block 2</div>
+
+    <!-- Display None Example -->
+    <div class="none-example">
+        You should NOT see this (display: none)
+    </div>
+
+    <!-- Visibility Hidden Example -->
+    <div class="visibility-example">
+        This is hidden but space remains (visibility: hidden)
+    </div>
+
+</body>
+</html>
