@@ -1,0 +1,21 @@
+/* Class Selector */
+.highlight {
+    background-color: yellow;
+    color: black;
+    font-size: 20px;
+    text-align: center;
+}
+
+/* Styling most elements using external CSS */
+body {
+    background-color: #f4f4f4;
+}
+
+.content {
+    background-color: lightblue;
+    color: navy;
+    font-size: 18px;
+    text-align: center;
+    padding: 15px;
+    margin-top: 20px;
+}

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lab Task 01 - CSS Basics</title>
+
+    <!-- Internal CSS -->
+    <style>
+        /* Universal Selector */
+        * {
+            font-family: Arial, sans-serif;
+        }
+
+        /* Element Selector */
+        p {
+            color: darkblue;
+            font-size: 18px;
+        }
+
+        /* ID Selector */
+        #mainTitle {
+            color: darkred;
+            background-color: lightgray;
+            text-align: center;
+        }
+    </style>
+
+    <!-- External CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Inline CSS Example -->
+    <h2 style="color: green; text-align: center;">
+        This heading uses Inline CSS
+    </h2>
+
+    <!-- ID Selector Example -->
+    <h1 id="mainTitle">Welcome to CSS Lab Task</h1>
+
+    <!-- Element Selector Example -->
+    <p>This paragraph is styled using the element selector.</p>
+
+    <!-- Class Selector Example -->
+    <p class="highlight">
+        This paragraph uses the class selector from external CSS.
+    </p>
+
+    <div class="content">
+        This div is styled using External CSS.
+    </div>
+
+</body>
+</html>
