@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lab Task 02 - CSS Units and Selector Types</title>
+
+    <style>
+        /* =====================================
+           PART A: CSS UNITS
+        ===================================== */
+
+        /* Group Selector */
+        h1, h2 {
+            font-family: Arial, sans-serif;
+            color: darkblue;
+            margin: 20px;              /* px (absolute) */
+        }
+
+        /* Absolute Units */
+        h1 {
+            font-size: 30px;           /* px */
+        }
+
+        h2 {
+            font-size: 1cm;            /* cm */
+        }
+
+        /* Relative Units */
+        .container {
+            width: 80%;                /* % */
+            margin: 2em auto;          /* em */
+            padding: 1rem;             /* rem */
+            background-color: #f2f2f2;
+        }
+
+        /* Descendant Selector */
+        div p {
+            font-size: 1.2em;          /* em */
+            color: green;
+        }
+
+        /* Mixed Units Box */
+        .box {
+            width: 50vw;               /* vw */
+            height: 25vh;              /* vh */
+            margin: 15px;              /* px */
+            padding: 10mm;             /* mm */
+            background-color: lightblue;
+            font-size: 1.5rem;         /* rem */
+            text-align: center;
+        }
+
+
+        /* =====================================
+           PART B: SELECTOR TYPES
+        ===================================== */
+
+        /* Attribute Selector */
+        input[type="text"] {
+            font-size: 16px;
+            padding: 10px;
+            border: 2px solid gray;
+        }
+
+
+        /* =====================================
+           PART C: PSEUDO-CLASSES
+        ===================================== */
+
+        /* Link Hover */
+        a:hover {
+            color: red;
+        }
+
+        /* Input Focus */
+        input[type="text"]:focus {
+            border-color: blue;
+            background-color: #e6f2ff;
+        }
+
+        /* Button Active */
+        button:active {
+            background-color: orange;
+        }
+
+    </style>
+
+</head>
+<body>
+
+    <h1>CSS Units Demonstration</h1>
+    <h2>Absolute and Relative Units</h2>
+
+    <div class="container">
+        <p>This paragraph is styled using descendant selector (div p).</p>
+    </div>
+
+    <div class="box">
+        This box demonstrates width, height, margin, and padding using different units.
+    </div>
+
+    <br>
+
+    <a href="#">Hover Over This Link</a>
+
+    <br><br>
+
+    <input type="text" placeholder="Enter your name">
+    <button>Click Me</button>
+
+</body>
+</html>

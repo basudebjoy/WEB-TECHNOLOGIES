@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Manager</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body{
+    background: linear-gradient(135deg,#667eea,#764ba2);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+}
+
+.app{
+    background:#ffffff;
+    width:650px;
+    border-radius:15px;
+    overflow:hidden;
+    box-shadow:0 15px 40px rgba(0,0,0,0.2);
+}
+
+/* Header */
+.header{
+    background:#222;
+    color:#fff;
+    padding:20px;
+    text-align:center;
+    font-size:20px;
+    letter-spacing:1px;
+}
+
+/* Main Content */
+.content{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap:20px;
+    padding:20px;
+}
+
+/* Left Panel */
+.form-panel{
+    display:flex;
+    flex-direction:column;
+}
+
+.form-panel input{
+    padding:10px;
+    margin-bottom:10px;
+    border:1px solid #ddd;
+    border-radius:6px;
+}
+
+.form-panel button{
+    padding:10px;
+    border:none;
+    border-radius:6px;
+    background:#667eea;
+    color:#fff;
+    cursor:pointer;
+    font-weight:500;
+}
+
+.form-panel button:disabled{
+    background:#aaa;
+}
+
+/* Right Panel */
+.list-panel{
+    max-height:300px;
+    overflow-y:auto;
+}
+
+.student-card{
+    background:#f4f4f4;
+    padding:10px;
+    border-radius:8px;
+    margin-bottom:10px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    transition:0.3s;
+}
+
+.student-card.present{
+    background:#c8f7c5;
+}
+
+.student-info{
+    font-size:14px;
+}
+
+.actions button{
+    margin-left:5px;
+    padding:5px 8px;
+    border:none;
+    border-radius:4px;
+    cursor:pointer;
+    font-size:12px;
+}
+
+.edit-btn{ background:#ffc107; }
+.delete-btn{ background:#dc3545; color:white; }
+
+/* Footer */
+.footer{
+    padding:15px 20px;
+    background:#f9f9f9;
+    font-size:14px;
+    display:flex;
+    justify-content:space-between;
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+    <div class="header">
+        🎓 Student Manager Dashboard
+    </div>
+
+    <div class="content">
+
+        <!-- LEFT SIDE -->
+        <div class="form-panel">
+            <input type="text" id="name" placeholder="Student Name">
+            <input type="text" id="roll" placeholder="Roll No">
+            <button id="addBtn" disabled>Add Student</button>
+        </div>
+
+        <!-- RIGHT SIDE -->
+        <div class="list-panel" id="list"></div>
+
+    </div>
+
+    <div class="footer">
+        <span id="total">Total: 0</span>
+        <span id="attendance">Present: 0 | Absent: 0</span>
+    </div>
+
+</div>
+
+<script>
+const nameInput = document.getElementById("name");
+const rollInput = document.getElementById("roll");
+const addBtn = document.getElementById("addBtn");
+const list = document.getElementById("list");
+const totalText = document.getElementById("total");
+const attendanceText = document.getElementById("attendance");
+
+nameInput.addEventListener("input", ()=>{
+    addBtn.disabled = nameInput.value.trim()==="";
+});
+
+addBtn.onclick = ()=>{
+    const name = nameInput.value.trim();
+    const roll = rollInput.value.trim();
+    if(!name || !roll) return;
+
+    const card = document.createElement("div");
+    card.className = "student-card";
+
+    card.innerHTML = `
+        <div class="student-info">
+            <strong>${roll}</strong> - ${name}
+        </div>
+        <div class="actions">
+            <input type="checkbox" class="presentBox">
+            <button class="edit-btn" onclick="editStudent(this)">Edit</button>
+            <button class="delete-btn" onclick="deleteStudent(this)">Delete</button>
+        </div>
+    `;
+
+    list.appendChild(card);
+
+    nameInput.value="";
+    rollInput.value="";
+    addBtn.disabled=true;
+
+    updateCounts();
+};
+
+function updateCounts(){
+    const cards = document.querySelectorAll(".student-card");
+    totalText.textContent = "Total: " + cards.length;
+
+    let present=0;
+    cards.forEach(card=>{
+        if(card.classList.contains("present")) present++;
+    });
+
+    attendanceText.textContent =
+        `Present: ${present} | Absent: ${cards.length-present}`;
+}
+
+function deleteStudent(btn){
+    btn.closest(".student-card").remove();
+    updateCounts();
+}
+
+function editStudent(btn){
+    const card = btn.closest(".student-card");
+    const info = card.querySelector(".student-info").textContent;
+    const [roll,name] = info.split(" - ");
+
+    const newName = prompt("Edit Name:", name);
+    const newRoll = prompt("Edit Roll:", roll);
+
+    if(newName && newRoll){
+        card.querySelector(".student-info").innerHTML =
+            `<strong>${newRoll}</strong> - ${newName}`;
+    }
+}
+
+list.addEventListener("change",(e)=>{
+    if(e.target.classList.contains("presentBox")){
+        const card = e.target.closest(".student-card");
+        card.classList.toggle("present", e.target.checked);
+        updateCounts();
+    }
+});
+</script>
+
+</body>
+</html>
